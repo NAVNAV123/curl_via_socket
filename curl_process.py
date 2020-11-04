@@ -19,10 +19,6 @@ class HTTPRequest(object):
         if headers is not None:
             self.headers.update(headers)
 
-    def _broke_url(self, url):
-        self.url = urlparse(self.url)
-        # host, port = self.url.netloc.split(':')
-
     def _get_payload(self):
         payload = "%s %s HTTP/1.1\r\n" % (self.method, self.url_parts.path)
         for header in self.headers:
@@ -59,5 +55,5 @@ class HTTPRequest(object):
             e.close()
 
 
-packet_req = HTTPRequest("GET", "http://www.google.com/api/foo/bar", headers={"Content-type": "Application/JSON"})
+packet_req = HTTPRequest("GET", "https://www.google.com", headers={"Content-type": "Application/JSON"})
 packet_req.send()
